@@ -8,10 +8,10 @@ RSpec.describe Orders::DisburseService, type: :service do
   let(:order) { create(:order) }
 
   describe 'not disbursed order' do
-    it { expect { service_class.call }.to change { order.reload.disbursed_at } }
+    it { expect { service_class.call }.to change { order.reload.disbursed? }.to(true) }
   end
 
   describe 'disbursed order' do
-    it { expect { service_class.call }.not_to change { disbursed_order.reload.disbursed_at } }
+    it { expect { service_class.call }.not_to change { disbursed_order.reload.disbursed? } }
   end
 end

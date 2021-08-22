@@ -7,7 +7,7 @@ RSpec.describe Disbursements::CreateService, type: :service do
   let(:service_class) { described_class.new(order: order) }
 
   # TODO: test that it is set to current time
-  it { expect { service_class.call }.to change { order.reload.disbursed_at } }
+  it { expect { service_class.call }.to change { order.reload.disbursed? }.to(true) }
 
   TEST_CASES = [[0.5, 49.99],          # 0.01% for orders lesser than 50 Eur
                 [0.48, 50],            # 0.0095% for orders for 50-300 Eur
