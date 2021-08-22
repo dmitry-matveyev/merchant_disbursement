@@ -7,8 +7,8 @@ module Orders
       # if we do not want to ocasionally disburse some old orders
       # whcih were not disbursed for some reason
 
-      Order.not_disbursed.each do |order|
-        Disbursements::CreateService.new(order: order).call
+      Order.not_disbursed.pluck(:id).each do |order_id|
+        DisburseJob.perform_later(order_id)
       end
     end
   end

@@ -5,5 +5,9 @@ FactoryBot.define do
     merchant
     shopper
     amount { SecureRandom.rand }
+
+    trait :disbursed do
+      disbursed_at { Time.current }
+    end
   end
 end

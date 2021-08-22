@@ -13,7 +13,8 @@ module Disbursements
     end
 
     def call
-      order.update(fee_amount: fee_amount, disbursed_at: Time.current)
+      # NOTE: to be run in job with retries on exception
+      order.update!(fee_amount: fee_amount, disbursed_at: Time.current)
     end
 
     private

@@ -21,4 +21,8 @@ RSpec.describe Disbursements::CreateService, type: :service do
       it { expect { service_class.call }.to change { order.reload.fee_amount }.to(fee_amount) }
     end
   end
+
+  context 'when object can not be persisted' do
+    xit 'should raise error on update'
+  end
 end
